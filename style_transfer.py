@@ -177,11 +177,6 @@ if __name__ == "__main__":
     parse.add_argument('--layers', '-l', help="Choose layers for features extraction", choices=["original", "alternative"], default="original")
     args = parse.parse_args()
 
-    content_path = args.content
-    style_path = args.style
-    optimizer = args.optim
-    layers = args.layers
-
     cfg = {
         "content_path": args.content,
         "style_path": args.style,
