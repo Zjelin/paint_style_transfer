@@ -14,7 +14,7 @@ device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 content_layers = {
     "original": {'21': 'conv4_2'},
-    "alternate": {'7': 'conv4_2'}
+    "alternative": {'7': 'conv4_2'}
 }
 
 style_layers = {
@@ -25,7 +25,7 @@ style_layers = {
         '19':   'conv4_1',
         '28':   'conv5_1'
     },
-    'alternate': {
+    'alternative': {
         '0':    'conv1_1',
         '2':    'conv2_1',
         '5':   'conv3_1',
