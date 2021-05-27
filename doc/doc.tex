@@ -20,7 +20,7 @@
 	\section*{Úvod}
 	Se zvyšováním výpočetního výkonu roste množina úloh, které byly dříve považovány za řešitelné výhradně člověkem, avšak u kterých se později ukázalo, že přeci jen existují metody (zpravidla založené na strojovém učení), pomocí nichž může stroj produkovat výsledky, které jsou při porovnání s těmi lidskými srovnatelné, či dokonce lepší. Příkladem takové úlohy může být hra Go, nebo malba obrazů. 
 	\par
-	Právě druhé uvedené disciplíně, v oboru strojového učení nazývané Painting Style Transfer, se bude tento text věnovat. Nejdříve uvedeme definici úlohy, poté rozebereme její implementaci v podání autorů textu a na závěr uvedeme experimenty a jejich vyhodnocení spojené s touto úlohou. \textbf{TOTO MOZNA SE TO ZMENI}.
+	Právě druhé uvedené disciplíně, v oboru strojového učení nazývané Painting Style Transfer, se bude tento text věnovat. Nejdříve uvedeme definici úlohy, poté rozebereme její implementaci v podání autorů textu a na závěr uvedeme experimenty a jejich vyhodnocení spojené s touto úlohou.
 	
 	\section*{Definice úlohy}
 	Úloha Painting Style Transfer spočívá v kombinaci dvou vstupních obrázků do jednoho obrázku výstupního. Vstupy jsou obrázek \textit{content}, na němž je obsah obrázku, který má být na výstupu a obrázek \textit{style}, mající výtvarný styl, který má být do výstupu předán. Příklad vstupů a jejich kombinace je uveden na obrázku \ref{fig1}.
@@ -62,9 +62,17 @@
 	\caption{Znázornění použité architektury. Jsou zde také vyznačena místa, z nichž jsou počítány chyby. Původní obrázek převzat z https://towardsdatascience.com/art-with-ai-turning-photographs-into-artwork-with-neural-style-transfer-8144ece44bed}
 	\label{VGG}
 \end{figure}
+	
+\section*{Datová sada}
+	Naše datová sada se dělí do dvou sekcí. První je sekce stylových obrázků, obsahující díla známých autorů, napříč styly (například Wassily Kandinsky -- Composition VII, nebo Vincent van Gogh -- Starry Night), které byly vybrány tak, aby zastupovaly co možná nejširší záběr výtvarného projevu. V této části datové sady se nalézá 6 děl. 
+	\par
+	
+	Druhá část sady obsahuje 5 "content" obrázků. Tentokrát se jedná o fotografie různých objektů. Opět jsme se snažili o co možná nejpestřejší výběr. V sadě se tak nalézá například hromada kovových součástí strojů, nebo fotografie rozvětveného stromu.
+	\par
+	Celá datová sada je dostupná na GitHubu tohoto projektu\footnote{https://github.com/Zjelin/paint\_style\_transfer}. Zde jsou také uvedené zdroje, z nichž bylo čerpáno. 
 
 	\section*{Experimenty}
-	V rámci experimentů s naší implementací jsme se rozhodli porovnat rychlost konvergence různých optimalizátorů, vyzkoušet vliv výběru odlišných vrstev pro výpočet $L_{style}$ a \textbf{vyzkoušet vliv změny počátečního obrázku z bílého šumu na content obrázek}. Hodnoty $\alpha$ a $\beta$ byly nastaveny na $\alpha = 10^{-1}$ $\beta = 10^6$ a tedy poměr $\alpha / \beta = 10^{-7} $. Tento poměr byl vybrán z toho důvodu, že produkoval $L_{total}$ hodnoty blízko 0 a dle autorů na něm šly  dobře pozorovat rozdíly v chování během jednotlivých experimentů. \textbf{Lež jak věž, Z. na to zapomnpěl, přepočítat, jestli bude čas}. V rámci experimentů používáme 3 \textit{style} a 3 \textit{content} obrázky, které jsou vyobrazeny na obrázku \ref{UsedFigs}. Tyto obrázky pužíváme v \textit{content-style} párech \textit{machinery-sea}, \textit{tree-wave} a \textit{barcelona-figure}.
+	V rámci experimentů s naší implementací jsme se rozhodli porovnat rychlost konvergence různých optimalizátorů, vyzkoušet vliv výběru odlišných vrstev pro výpočet $L_{style}$ a \textbf{vyzkoušet vliv změny počátečního obrázku z bílého šumu na content obrázek}. Hodnoty $\alpha$ a $\beta$ byly nastaveny na $\alpha = 10^{-1}$ $\beta = 10^6$ a tedy poměr $\alpha / \beta = 10^{-7} $. Tento poměr byl vybrán z toho důvodu, že produkoval $L_{total}$ hodnoty blízko 0 a dle autorů na něm šly  dobře pozorovat rozdíly v chování během jednotlivých experimentů. V rámci experimentů používáme 3 \textit{style} a 3 \textit{content} obrázky, které jsou vyobrazeny na obrázku \ref{UsedFigs}. Tyto obrázky pužíváme v \textit{content-style} párech \textit{machinery-sea}, \textit{tree-wave} a \textit{barcelona-figure}.
 	\begin{figure}[h]
 		\includegraphics[width=\linewidth]{figs.png}
 		\caption{Obrázky použité v rámci experimentů. Jejich zdroje jsou uvedeny na gitu projektu.}
@@ -91,17 +99,27 @@
 	
 	\subsection*{Test stylových vrstev}
 	Dalším experimentem, který byl vykonán bylo testování, nakolik závisí rychlost konvergence Loss funkce a vizuální kvalita výstupu na výběru vrstev, na nichž se počítá $L_{style}$. Při experimentu byl ponechán počet iterací výpočtu. Style loss byl pro účely experimentu počínán kromě původních vrstev, navrhovaných Gatysem počítán z Conv1\_1, Conv1\_2, Conv2\_1, Conv2\_2, a Conv3\_1.
-	Jejich srovnání je z hlediska konvergence Loss funkce zobrazeno na obrázku \ref{Exp_G} a porovnání kvality výstupu je na obrázku \ref{Exp2_O}. Pro porovnání byly opět použity stejné tři dvojice obrázků.
+	Jejich srovnání je z hlediska konvergence Loss funkce zobrazeno na obrázku \ref{Exp2_G} a porovnání kvality výstupu je na obrázku \ref{Exp2_O}. Pro porovnání byly opět použity stejné tři dvojice obrázků.
 	\par
 	Z grafu vývoje Loss funkce obrazů, jejichž styl byl generován z mělčích vrstev, lze vypozorovat, že ve všech případech skončila hodnota Loss po poslední iteraci níž než v obrazech generovaných za pomocí původních vrstev. Dle autorů by to mohlo být způsobeno jednoduššími entitami, které jsou v těchto vrstvách detekovány. Dále se u vývoje Loss hodnoty pro nově vybrané vrstvy opět objevují nenadálé výkyvy. 
 	\par
 	Z vizuálního hlediska mají obrazy generované mělčími vrstvami barevně výraznější schéma, které přejali ze stylového obrázku. Při použití mělčích vrstev se propaguje spíše barva (low-level features), než komplexnější vzorce. Např. na dvojici \textit{tree-wave} si lze všimnout, že při použití originálních vrstev se projevily vzorce vln ve větší míře (porovnejme levé spodní části obrázků). 
+	 
+	\subsection*{Test počátečního generovaného obrázku}
+	Výsledný obrázek, který je napříč iteracemi výpočtu upravován tak, aby minimalizoval Loss hodnotu je v původním článku od Gatyse inicializován na bílý šum. Během optimalizace se pak snižuje jak Content Loss, tak Style Loss, když z náhodného šumu vzniká výsledný obrázek. Naše řešení však za výchozí výstup používá Content obrázek. Tato idea na změnu výchozího stavu byla přejata ze serveru medium.com\footnote{https://medium.com/tensorflow/neural\-style\-transfer\-creating\-art\-with\-deep\-learning\-using\-tf\-keras\-and\-eager\-execution\-7d541ac31398}, podle nějž byla tvořena původní implementace pomocí frameworku TensorFlow. V tomto experimentu si klademe za cíl určit, zda má tato změna vliv na kvalitu výstupu/rychlost konvergence.
+	\par
+	Pro generování výsledků s použitím bílého šumu byl použit optimalizátor LBFGS při 100 iteracích. Příklad porovnání výstupů, je na obr. \ref{Noise}. Z výsledků lze usoudit, že inicializace s Content obrázkem je výhodná, neboť konverguje rychleji. Toto je podle autorů dáno tím, že content je již ve výstupu přítomen a není tak třeba jej tam zanášet (tj. snižovat Content Loss hodnotu).
 	
+		\begin{figure}[h]
+		\includegraphics[width=\linewidth]{ContentNoise.png}
+		\caption{Porovnání výsledků s různými inicializačními obrázky. }
+		\label{Noise}
+	\end{figure}
 	
 	\section*{Závěr}
-	V tomto díle jsme realizovali řešení úlohy Paint Style Transfer navržené Gatysem. Implementace byla řešena v jazyce Python3, s využitím frameworku PyTorch.
+	V tomto projektu jsme realizovali řešení úlohy Paint Style Transfer navržené Gatysem. Implementace byla řešena v jazyce Python3, s využitím frameworku PyTorch.
 	\par
-	V rámci experimentů jsme porovnali efektivitu optimalizátorů, z nichž nejlépe vyšel LBFGS. Dále jsme navrhli alternativní volbu stylových vrstev, kde jsme vybrali vrstvy mělčí. Alternativní vrstvy dosahovaly rozdílných vizuálních výsledků. Nelze jednoznačně určit, která volba je vhodnější, neboť ani jedna série výsledků není signifikantně horší a vkus je subjektivní.
+	V rámci experimentů jsme porovnali efektivitu optimalizátorů, z nichž nejlépe vyšel LBFGS. Dále jsme navrhli alternativní volbu stylových vrstev, kde jsme vybrali vrstvy mělčí. Alternativní vrstvy dosahovaly rozdílných vizuálních výsledků. Nelze jednoznačně určit, která volba je vhodnější, neboť ani jedna série výsledků není signifikantně horší a vkus je subjektivní. Prokázali jsme, že inicializace výstupního obrázku je výhodnější za použití Content obrázku, namísto bílého šumu používaného Gatysem v původním článku.
 	
 
 		\begin{figure*}[t]
