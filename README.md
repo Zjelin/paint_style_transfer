@@ -9,9 +9,9 @@
 # Run
 `python3 style_transfer -c c_path -s s_path [-o optim|-l layers|-h]`
 
--c - Path to content image
+-c - Path to content image, e.g. `data/content/train.jpg`
 
--s - Path to style image
+-s - Path to style image, e.g. `data/style/composition.jpg`
 
 -o - Select optimizer, options are `adam` or `lbfgs`
 
