@@ -1,0 +1,14 @@
+CONTENT
+barcelona.png - https://www.papernest.es/blog/wp-content/uploads/2019/07/shutterstock_178539545.jpg
+machine.jpg - https://auto.economictimes.indiatimes.com/news/auto-components/what-auto-component-makers-expect-from-union-budget-2018/62636190
+train.jpg - https://cz.pinterest.com/pin/410601691009402133/
+tree.jpg - https://vastphotos.com/files/uploads/photos/10690/autumn-foliage-tree-photo-l.jpg
+turtle.jpg - https://wtrautmannkscbio.files.wordpress.com/2017/04/sea-turtle.jpg?w=619&h=464
+
+STYLE
+StarryNight.jpg - Starry Night - https://cs.m.wikipedia.org/wiki/Soubor:Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg
+composition.jpg - Composition VII - https://www.artesvelata.it/wp-content/uploads/2021/03/Vasilij-Kandinskij-Composizione-VII-1913.-Olio-su-tela-200-x-300-cm.-Mosca-Galleria-Tretjakov-arte-svelata.jpg
+picasso.jpg - Seated Nude - https://www.pablopicasso.org/images/paintings/seated-nude.jpg
+ship.jpg - The Wreck of a Transport Ship - https://commons.wikimedia.org/wiki/File:The_wreck_of_a_transport_ship_by_Turner_(1810).JPG
+reddit_wave.jpg- - https://www.reddit.com/r/pics/comments/msv93x/im_stuck_quarantining_and_hoping_for_some/?utm_medium=android_app&utm_source=share
+wave.jpg - The Great Wave of Kanagawa - https://cdn.shopify.com/s/files/1/0324/7761/0123/products/The_Great_Wave_off_Kanagawa_by_Hokusai_5000x.jpg?v=1580885557
