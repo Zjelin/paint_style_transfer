@@ -126,10 +126,10 @@ def run(cfg, alpha=0.1, beta=1000000):
     output_img = content_img.clone().requires_grad_(True)
 
     if cfg["optimizer"] == "adam":
-        iterations = 1
+        iterations = 1000
         optimizer = optim.Adam([output_img], lr=0.01)
     else:
-        iterations = 2
+        iterations = 100
         optimizer = optim.LBFGS([output_img], max_iter = 10, lr=0.8)
 
     best_loss = float('inf')
